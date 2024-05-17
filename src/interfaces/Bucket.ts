@@ -1,7 +1,7 @@
 import { Fruit } from "./Fruit";
 
 export interface Bucket {
-  id: string;
+  id: number;
   capacity: number;
   fruits: Fruit[];
 }

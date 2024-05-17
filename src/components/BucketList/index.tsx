@@ -1,23 +1,33 @@
 import styled from "styled-components";
 
-import { Bucket } from "@/interfaces/Bucket";
+import { Box } from "@/components";
+import useAppStore from "@/store/appStore";
 
 import BucketItem from "./BucketItem";
-import { Box } from "..";
 
-interface BucketListProps {
-  items: Bucket[];
-}
+const BucketList = () => {
+  const { buckets } = useAppStore(({ buckets }) => ({
+    buckets,
+  }));
 
-const BucketList = ({ items }: BucketListProps) => {
-  if (!items.length) {
-    return <Box>Não há baldes</Box>;
+  if (!buckets.length) {
+    return (
+      <Box>
+        <div
+          style={{
+            minHeight: "250px",
+          }}
+        >
+          Não há baldes
+        </div>
+      </Box>
+    );
   }
 
   return (
     <Box>
       <Grid>
-        {items.map((item) => (
+        {buckets.map((item) => (
           <BucketItem key={item.id} bucket={item} />
         ))}
       </Grid>
@@ -25,7 +35,6 @@ const BucketList = ({ items }: BucketListProps) => {
   );
 };
 
-// 2 items per row
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);

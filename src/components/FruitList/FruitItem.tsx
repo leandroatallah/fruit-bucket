@@ -28,7 +28,7 @@ const FruitItem = ({ fruit }: FruitItemProps) => {
           <S.Heading>{fruit.name}</S.Heading>
           <S.Price>{convertToCurrency(fruit.price)}</S.Price>
         </S.Content>
-        <S.Button onClick={handleOnClickButton}>
+        <S.Button type="button" onClick={handleOnClickButton}>
           <PlusIcon />
         </S.Button>
       </S.Box>

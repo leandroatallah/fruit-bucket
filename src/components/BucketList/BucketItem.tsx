@@ -20,9 +20,9 @@ const BucketItem = ({ bucket }: BucketItemProps) => {
   return (
     <div>
       <S.Box>
-        <Flex alignItems="center">
+        <Flex align="center">
           <S.Heading>Total: {convertToCurrency(bucketTotal)}</S.Heading>
-          <S.DeleteButton>
+          <S.DeleteButton type="button">
             <TrashIcon />
           </S.DeleteButton>
         </Flex>

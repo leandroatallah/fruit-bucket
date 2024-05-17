@@ -30,10 +30,10 @@ const BucketFruitItem = ({ fruit }: BucketFruitItemProps) => {
         <S.Price>{convertToCurrency(fruit.price)}</S.Price>
         <S.ActionList>
           <Flex gap={10}>
-            <S.ActionButton onClick={handleOnClickAddButton}>
+            <S.ActionButton type="button" onClick={handleOnClickAddButton}>
               <PlusIcon color="#3763FF" />
             </S.ActionButton>
-            <S.ActionButton onClick={handleOnClickRemoveButton}>
+            <S.ActionButton type="button" onClick={handleOnClickRemoveButton}>
               <XIcon />
             </S.ActionButton>
           </Flex>
