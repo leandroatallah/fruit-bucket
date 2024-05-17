@@ -1,7 +1,7 @@
+import { Flex } from "@/components";
 import { Fruit } from "@/interfaces/Fruit";
 
 import BucketFruitItem from "./BucketFruitItem";
-import { Flex } from "..";
 
 interface BucketFruitListProps {
   items: Fruit[];

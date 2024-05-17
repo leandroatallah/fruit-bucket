@@ -1,8 +1,8 @@
+import { Flex, TrashIcon } from "@/components";
 import { Bucket } from "@/interfaces/Bucket";
 
 import * as S from "./BucketItem.styles";
 import BucketFruitList from "./BucketFruitList";
-import { Flex, TrashIcon } from "..";
 import { convertToCurrency } from "@/utils";
 
 interface BucketItemProps {
