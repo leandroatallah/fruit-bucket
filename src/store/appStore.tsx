@@ -7,6 +7,8 @@ interface AppState {
   fruits: Fruit[];
 
   createBucket: (capacity: number) => void;
+  removeBucket: (bucketId: Bucket["id"]) => void;
+
   createFruit: (name: string, price: number) => void;
 
   moveUnallocatedFruit: (fruitId: Fruit["id"], bucketId: Bucket["id"]) => void;
@@ -29,6 +31,12 @@ const useAppStore = create<AppState>()((set) => ({
         { id: state.buckets.length + 1, capacity, fruits: [] },
       ],
     })),
+  removeBucket: (bucketId) => {
+    set((state) => ({
+      buckets: state.buckets.filter((bucket) => bucket.id !== bucketId),
+    }));
+  },
+
   createFruit: (name, price) => {
     const uuid = crypto.randomUUID();
     set((state) => ({

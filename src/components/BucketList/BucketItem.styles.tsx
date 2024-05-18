@@ -15,10 +15,21 @@ export const Box = styled.div`
   }
 `;
 
-export const Heading = styled.h3`
-  width: 100%;
+export const Heading = styled.div`
   font-size: 14px;
+  font-weight: 700;
   margin: 0;
+  width: 100%;
+  text-align: left;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+`;
+
+export const Total = styled.h3`
+  font-size: 14px;
+  margin: 8px 0 0;
 
   @media (min-width: 768px) {
     font-size: 16px;
@@ -30,6 +41,7 @@ export const DeleteButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   padding: 0;
+  transform: scale(0.8);
 
   &:hover {
     opacity: 0.8;
