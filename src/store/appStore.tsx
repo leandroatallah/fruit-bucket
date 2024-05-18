@@ -25,6 +25,7 @@ const useAppStore = create<AppState>()((set) => ({
   fruits: [],
 
   createBucket: (capacity) =>
+    // TODO: Handle invalid values
     set((state) => ({
       buckets: [
         ...state.buckets,
@@ -38,6 +39,7 @@ const useAppStore = create<AppState>()((set) => ({
   },
 
   createFruit: (name, price) => {
+    // TODO: Handle invalid values
     const uuid = crypto.randomUUID();
     set((state) => ({
       fruits: [...state.fruits, { id: uuid, name, price }],

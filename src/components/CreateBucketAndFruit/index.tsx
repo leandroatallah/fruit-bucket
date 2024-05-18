@@ -31,19 +31,26 @@ const CreateBucketAndFruit = () => {
     <Flex gap={24} align="stretch" direction="column" $lgDirection="row">
       <Box as="form" onSubmit={handleAddBucket}>
         <Heading>Criar Balde</Heading>
-        <InputForm name="capacity" label="Capacidade" type="number" min="1" />
+        <InputForm
+          name="capacity"
+          label="Capacidade"
+          type="number"
+          min="1"
+          required
+        />
         <Button type="submit">Salvar</Button>
       </Box>
       <Box as="form" onSubmit={handleAddFruit}>
         <Heading>Criar Fruta</Heading>
         <Flex direction="column" gap={15}>
-          <InputForm name="fruitName" label="Nome" type="text" />
+          <InputForm name="fruitName" label="Nome" type="text" required />
           <InputForm
             name="price"
             label="Preço"
             type="number"
             min="0"
             step="0.01"
+            required
           />
         </Flex>
         <Button type="submit">Salvar</Button>
