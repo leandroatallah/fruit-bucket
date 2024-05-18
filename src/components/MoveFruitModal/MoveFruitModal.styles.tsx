@@ -20,7 +20,9 @@ export const List = styled.div`
   gap: 8px 12px;
 `;
 
-export const ListItem = styled.div`
+export const ListItem = styled.button`
+  padding: 0;
+  border: none;
   background-color: #e5e5e5;
   color: #000;
   display: flex;
@@ -29,4 +31,5 @@ export const ListItem = styled.div`
   border-radius: 4px;
   height: 28px;
   width: 100%;
+  cursor: pointer;
 `;

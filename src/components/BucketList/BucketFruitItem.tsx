@@ -1,6 +1,8 @@
 import { useState } from "react";
 
+import { Bucket } from "@/interfaces/Bucket";
 import { Fruit } from "@/interfaces/Fruit";
+import useAppStore from "@/store/appStore";
 import { convertToCurrency } from "@/utils";
 
 import * as S from "./BucketFruitItem.styles";
@@ -8,16 +10,21 @@ import { Flex, MoveFruitModal, PlusIcon, XIcon } from "@/components";
 
 interface BucketFruitItemProps {
   fruit: Fruit;
+  bucketId: Bucket["id"];
 }
 
-const BucketFruitItem = ({ fruit }: BucketFruitItemProps) => {
+const BucketFruitItem = ({ fruit, bucketId }: BucketFruitItemProps) => {
+  const { removeFruitFromBucket } = useAppStore();
+
   const [visibled, setVisibled] = useState(false);
 
   const handleOnClickAddButton = () => {
     setVisibled(true);
   };
 
-  const handleOnClickRemoveButton = () => {};
+  const handleOnClickRemoveButton = () => {
+    removeFruitFromBucket(fruit.id, bucketId);
+  };
 
   const handleOnCloseModal = () => {
     setVisibled(false);
@@ -44,6 +51,7 @@ const BucketFruitItem = ({ fruit }: BucketFruitItemProps) => {
         visibled={visibled}
         fruitId={fruit.id}
         onClose={handleOnCloseModal}
+        fromBucketId={bucketId}
       />
     </div>
   );

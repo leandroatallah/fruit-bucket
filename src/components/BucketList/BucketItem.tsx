@@ -26,9 +26,9 @@ const BucketItem = ({ bucket }: BucketItemProps) => {
             <TrashIcon />
           </S.DeleteButton>
         </Flex>
-        <BucketFruitList items={bucket.fruits} />
+        <BucketFruitList items={bucket.fruits} bucketId={bucket.id} />
       </S.Box>
-      <S.Capacity>Capacidade: {capacityPercentage}%</S.Capacity>
+      <S.Capacity>Capacidade: {capacityPercentage.toFixed(2)}%</S.Capacity>
     </div>
   );
 };

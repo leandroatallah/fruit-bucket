@@ -1,48 +1,52 @@
 import { useDetectClickOutside } from "@/hooks/useDetectClickOutside";
+import { Bucket } from "@/interfaces/Bucket";
 import { Fruit } from "@/interfaces/Fruit";
+import useAppStore from "@/store/appStore";
 
 import * as S from "./MoveFruitModal.styles";
-
-const buckets = [
-  {
-    id: "1",
-    capacity: 10,
-    fruits: [],
-  },
-  {
-    id: "2",
-    capacity: 10,
-    fruits: [],
-  },
-  {
-    id: "3",
-    capacity: 10,
-    fruits: [],
-  },
-];
 
 interface MoveFruitModalProps {
   visibled: boolean;
   fruitId: Fruit["id"];
+  fromBucketId?: Bucket["id"];
   onClose: () => void;
 }
 
 const MoveFruitModal = ({
   visibled,
   fruitId,
+  fromBucketId,
   onClose,
 }: MoveFruitModalProps) => {
+  const { buckets, moveFruitBetweenBuckets, moveUnallocatedFruit } =
+    useAppStore();
+
   const ref = useDetectClickOutside({
-    onTriggered: () => {
-      onClose();
-    },
+    onTriggered: () => onClose(),
   });
+
+  const bucketOptions = buckets.filter((bucket) => bucket.id !== fromBucketId);
+
+  const handleMoveFruit = (bucketId: number) => {
+    if (fromBucketId) {
+      moveFruitBetweenBuckets(fruitId, fromBucketId, bucketId);
+    } else {
+      moveUnallocatedFruit(fruitId, bucketId);
+    }
+
+    onClose();
+  };
 
   return (
     <S.Container visibled={visibled} ref={ref}>
       <S.List>
-        {buckets?.map((bucket, index) => (
-          <S.ListItem key={bucket.id}>Balde {index + 1}</S.ListItem>
+        {bucketOptions?.map((bucket) => (
+          <S.ListItem
+            key={bucket.id}
+            onClick={() => handleMoveFruit(bucket.id)}
+          >
+            Balde {bucket.id}
+          </S.ListItem>
         ))}
       </S.List>
     </S.Container>
