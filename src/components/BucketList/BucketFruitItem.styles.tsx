@@ -22,6 +22,11 @@ export const Heading = styled.h4`
   margin: 0;
   font-size: 16px;
   font-weight: 700;
+  line-height: 1.1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 export const Price = styled.span`

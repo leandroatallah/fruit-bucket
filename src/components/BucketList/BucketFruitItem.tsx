@@ -33,7 +33,7 @@ const BucketFruitItem = ({ fruit, bucketId }: BucketFruitItemProps) => {
   return (
     <div style={{ position: "relative", width: "100%" }}>
       <S.Box>
-        <S.Heading>{fruit.name}</S.Heading>
+        <S.Heading title={fruit.name}>{fruit.name}</S.Heading>
         <S.Price>{convertToCurrency(fruit.price)}</S.Price>
         <S.ActionList>
           <Flex gap={10}>
