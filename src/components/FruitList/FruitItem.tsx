@@ -22,7 +22,7 @@ const FruitItem = ({ fruit }: FruitItemProps) => {
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative" }} data-testid="fruit-list-item">
       <S.Box>
         <S.Content>
           <S.Heading>{fruit.name}</S.Heading>

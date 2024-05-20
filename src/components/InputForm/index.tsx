@@ -1,6 +1,7 @@
 import * as S from "./InputForm.styles";
 
-interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputFormProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   prefixText?: string;
 }

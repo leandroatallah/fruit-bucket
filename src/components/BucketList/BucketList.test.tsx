@@ -2,38 +2,14 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import * as useAppStore from "@/store/appStore";
+import {
+  mockFruits,
+  mockUseAppStore,
+  removeBucket,
+  removeFruitFromBucket,
+} from "@/utils/tests/mock-use-app-store";
 
 import BucketList from ".";
-
-const mockFruits = [
-  {
-    id: "1",
-    name: "Banana",
-    price: 2.5,
-  },
-  {
-    id: "2",
-    name: "Laranja",
-    price: 4.9,
-  },
-  {
-    id: "3",
-    name: "Melancia",
-    price: 5.4,
-  },
-];
-
-const removeBucket = vi.fn();
-const removeFruitFromBucket = vi.fn();
-
-function mockUseAppStore(data: Partial<useAppStore.AppState>) {
-  vi.spyOn(useAppStore, "default").mockImplementation(() => ({
-    removeBucket,
-    removeFruitFromBucket,
-    ...data,
-  }));
-}
 
 describe("BucketList", () => {
   beforeEach(() => {
