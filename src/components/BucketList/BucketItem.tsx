@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+
 import { Flex, TrashIcon } from "@/components";
 import { Bucket } from "@/interfaces/Bucket";
 import useAppStore from "@/store/appStore";
@@ -14,10 +16,20 @@ const BucketItem = ({ bucket }: BucketItemProps) => {
   const { removeBucket } = useAppStore();
 
   const fruitCount = bucket.fruits?.length || 0;
-  const capacityPercentage = (fruitCount / bucket.capacity) * 100;
-  const bucketTotal = bucket.fruits.reduce(
-    (acc, fruit) => acc + fruit.price,
-    0
+
+  const capacityPercentage = useMemo(() => {
+    const value = (fruitCount / bucket.capacity) * 100;
+
+    if (value % 1 !== 0) {
+      return value.toFixed(2);
+    }
+
+    return value;
+  }, [bucket.capacity, fruitCount]);
+
+  const bucketTotal = useMemo(
+    () => bucket.fruits.reduce((acc, fruit) => acc + fruit.price, 0),
+    [bucket.fruits]
   );
 
   const handleRemoveBucket = () => {
@@ -38,7 +50,9 @@ const BucketItem = ({ bucket }: BucketItemProps) => {
         </div>
         <BucketFruitList items={bucket.fruits} bucketId={bucket.id} />
       </S.Box>
-      <S.Capacity>Capacidade: {capacityPercentage.toFixed(2)}%</S.Capacity>
+      <S.Capacity>
+        Capacidade: {fruitCount} de {bucket.capacity} ({capacityPercentage}%)
+      </S.Capacity>
     </div>
   );
 };

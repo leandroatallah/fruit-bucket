@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import styled from "styled-components";
 
 import { Box } from "@/components";
@@ -9,6 +10,19 @@ const BucketList = () => {
   const { buckets } = useAppStore(({ buckets }) => ({
     buckets,
   }));
+
+  const sortedBuckets = useMemo(() => {
+    return buckets.sort((a, b) => {
+      const aCapacityPercentage = a.fruits.length / a.capacity;
+      const bCapacityPercentage = b.fruits.length / b.capacity;
+
+      if (aCapacityPercentage === bCapacityPercentage) {
+        return b.fruits.length - a.fruits.length;
+      }
+
+      return bCapacityPercentage - aCapacityPercentage;
+    });
+  }, [buckets]);
 
   if (!buckets.length) {
     return (
@@ -27,7 +41,7 @@ const BucketList = () => {
   return (
     <Box>
       <Grid>
-        {buckets.map((item) => (
+        {sortedBuckets.map((item) => (
           <BucketItem key={item.id} bucket={item} />
         ))}
       </Grid>

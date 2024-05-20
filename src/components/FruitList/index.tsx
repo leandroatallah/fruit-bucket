@@ -21,7 +21,7 @@ const FruitList = () => {
   }
 
   return (
-    <Flex gap={15}>
+    <Flex gap={15} wrap>
       {fruits.map((item) => (
         <FruitItem key={item.id} fruit={item} />
       ))}
