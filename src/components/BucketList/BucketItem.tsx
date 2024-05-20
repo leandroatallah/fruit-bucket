@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { toast } from "react-toastify";
 
 import { Flex, TrashIcon } from "@/components";
 import { Bucket } from "@/interfaces/Bucket";
@@ -32,17 +33,26 @@ const BucketItem = ({ bucket }: BucketItemProps) => {
   );
 
   const handleRemoveBucket = () => {
+    if (bucket.fruits.length > 0) {
+      toast.warning("Esvazie o balde antes de removê-lo.");
+      return;
+    }
+
     removeBucket(bucket.id);
   };
 
   return (
-    <div>
+    <div data-testid="bucket-item">
       <S.Box>
         <S.Container>
           <div>
             <Flex align="center">
               <S.Heading>Balde {bucket.id}</S.Heading>
-              <S.DeleteButton type="button" onClick={handleRemoveBucket}>
+              <S.DeleteButton
+                type="button"
+                onClick={handleRemoveBucket}
+                data-testid="delete-bucket"
+              >
                 <TrashIcon />
               </S.DeleteButton>
             </Flex>
@@ -50,7 +60,7 @@ const BucketItem = ({ bucket }: BucketItemProps) => {
           </div>
           <BucketFruitList items={bucket.fruits} bucketId={bucket.id} />
         </S.Container>
-        <S.Filler capacityPercentage={capacityPercentage} />
+        <S.Filler $capacityPercentage={capacityPercentage} />
       </S.Box>
       <S.Capacity>
         Capacidade: {fruitCount} de {bucket.capacity} (

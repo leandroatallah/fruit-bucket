@@ -31,16 +31,27 @@ const BucketFruitItem = ({ fruit, bucketId }: BucketFruitItemProps) => {
   };
 
   return (
-    <div style={{ position: "relative", width: "100%" }}>
+    <div
+      style={{ position: "relative", width: "100%" }}
+      data-testid="bucket-fruit-item"
+    >
       <S.Box>
         <S.Heading title={fruit.name}>{fruit.name}</S.Heading>
         <S.Price>{convertToCurrency(fruit.price)}</S.Price>
         <S.ActionList>
           <Flex gap={10}>
-            <S.ActionButton type="button" onClick={handleOnClickAddButton}>
+            <S.ActionButton
+              type="button"
+              onClick={handleOnClickAddButton}
+              data-testid="move-fruit-from-bucket"
+            >
               <PlusIcon color="#3763FF" />
             </S.ActionButton>
-            <S.ActionButton type="button" onClick={handleOnClickRemoveButton}>
+            <S.ActionButton
+              type="button"
+              onClick={handleOnClickRemoveButton}
+              data-testid="remove-fruit"
+            >
               <XIcon />
             </S.ActionButton>
           </Flex>

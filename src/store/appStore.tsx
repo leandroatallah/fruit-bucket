@@ -5,7 +5,7 @@ import { persist, createJSONStorage } from "zustand/middleware";
 import { Bucket } from "@/interfaces/Bucket";
 import { Fruit } from "@/interfaces/Fruit";
 
-interface AppState {
+export interface AppState {
   buckets: Bucket[];
   fruits: Fruit[];
 
@@ -64,8 +64,7 @@ const useAppStore = create<AppState>()(
           }
 
           if (bucket.fruits.length > 0) {
-            toast.warning("Esvazie o balde antes de removê-lo.");
-            return;
+            throw new Error();
           }
 
           set((state) => ({

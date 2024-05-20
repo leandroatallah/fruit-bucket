@@ -38,12 +38,13 @@ const MoveFruitModal = ({
   };
 
   return (
-    <S.Container visibled={visibled} ref={ref}>
+    <S.Container visibled={visibled} ref={ref} data-testid="move-fruit-modal">
       <S.List>
         {bucketOptions?.map((bucket) => (
           <S.ListItem
             key={bucket.id}
             onClick={() => handleMoveFruit(bucket.id)}
+            data-testid="bucket-option"
           >
             Balde {bucket.id}
           </S.ListItem>

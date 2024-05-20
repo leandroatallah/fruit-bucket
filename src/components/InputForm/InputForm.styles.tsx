@@ -10,7 +10,7 @@ export const Label = styled.label`
   margin-bottom: 4px;
 `;
 
-export const Input = styled.input<{ prefixOffset?: number }>`
+export const Input = styled.input<{ $prefixOffset?: number }>`
   border: 0;
   border-radius: 4px;
   font-size: 16px;
@@ -18,7 +18,7 @@ export const Input = styled.input<{ prefixOffset?: number }>`
   width: 100%;
   background-color: #fff;
   height: 40px;
-  ${({ prefixOffset }) => prefixOffset && `padding-left: ${prefixOffset}px;`}
+  ${({ $prefixOffset: pOff }) => pOff && `padding-left: ${pOff}px;`}
 `;
 
 export const PrefixText = styled.span`

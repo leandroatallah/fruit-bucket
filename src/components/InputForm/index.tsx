@@ -20,7 +20,7 @@ const InputForm = ({
         <S.Input
           type={type}
           id={id}
-          prefixOffset={prefixText ? prefixText.length * 8 + 16 : 0}
+          $prefixOffset={prefixText ? prefixText.length * 8 + 16 : 0}
           {...rest}
         />
       </div>

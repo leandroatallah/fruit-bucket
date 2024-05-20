@@ -22,14 +22,14 @@ export const Container = styled.div`
   }
 `;
 
-export const Filler = styled.div<{ capacityPercentage: number }>`
+export const Filler = styled.div<{ $capacityPercentage: number }>`
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   background-color: #2b4bd8;
   border-radius: 0 0 4px 4px;
-  height: ${({ capacityPercentage }) => `${capacityPercentage}%`};
+  height: ${({ $capacityPercentage: cP }) => `${cP}%`};
   transition: height 0.25s;
   opacity: 0.75;
   z-index: 1;

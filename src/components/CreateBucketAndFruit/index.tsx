@@ -32,6 +32,7 @@ const CreateBucketAndFruit = () => {
       <Box as="form" onSubmit={handleAddBucket}>
         <Heading>Criar Balde</Heading>
         <InputForm
+          id="capacity"
           name="capacity"
           label="Capacidade"
           type="number"
@@ -43,8 +44,15 @@ const CreateBucketAndFruit = () => {
       <Box as="form" onSubmit={handleAddFruit}>
         <Heading>Criar Fruta</Heading>
         <Flex direction="column" gap={15}>
-          <InputForm name="fruitName" label="Nome" type="text" required />
           <InputForm
+            id="fruitName"
+            name="fruitName"
+            label="Nome"
+            type="text"
+            required
+          />
+          <InputForm
+            id="price"
             name="price"
             label="Preço"
             type="number"
