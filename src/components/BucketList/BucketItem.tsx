@@ -16,16 +16,15 @@ const BucketItem = ({ bucket }: BucketItemProps) => {
   const { removeBucket } = useAppStore();
 
   const fruitCount = bucket.fruits?.length || 0;
+  const capacityPercentage = (fruitCount / bucket.capacity) * 100;
 
-  const capacityPercentage = useMemo(() => {
-    const value = (fruitCount / bucket.capacity) * 100;
-
-    if (value % 1 !== 0) {
-      return value.toFixed(2);
+  const capacityPercentageText = useMemo(() => {
+    if (capacityPercentage % 1 !== 0) {
+      return capacityPercentage.toFixed(2);
     }
 
-    return value;
-  }, [bucket.capacity, fruitCount]);
+    return capacityPercentage;
+  }, [capacityPercentage]);
 
   const bucketTotal = useMemo(
     () => bucket.fruits.reduce((acc, fruit) => acc + fruit.price, 0),
@@ -39,19 +38,23 @@ const BucketItem = ({ bucket }: BucketItemProps) => {
   return (
     <div>
       <S.Box>
-        <div>
-          <Flex align="center">
-            <S.Heading>Balde {bucket.id}</S.Heading>
-            <S.DeleteButton type="button" onClick={handleRemoveBucket}>
-              <TrashIcon />
-            </S.DeleteButton>
-          </Flex>
-          <S.Total>Total: {convertToCurrency(bucketTotal)}</S.Total>
-        </div>
-        <BucketFruitList items={bucket.fruits} bucketId={bucket.id} />
+        <S.Container>
+          <div>
+            <Flex align="center">
+              <S.Heading>Balde {bucket.id}</S.Heading>
+              <S.DeleteButton type="button" onClick={handleRemoveBucket}>
+                <TrashIcon />
+              </S.DeleteButton>
+            </Flex>
+            <S.Total>Total: {convertToCurrency(bucketTotal)}</S.Total>
+          </div>
+          <BucketFruitList items={bucket.fruits} bucketId={bucket.id} />
+        </S.Container>
+        <S.Filler capacityPercentage={capacityPercentage} />
       </S.Box>
       <S.Capacity>
-        Capacidade: {fruitCount} de {bucket.capacity} ({capacityPercentage}%)
+        Capacidade: {fruitCount} de {bucket.capacity} (
+        {capacityPercentageText + "%"})
       </S.Capacity>
     </div>
   );

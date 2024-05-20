@@ -11,7 +11,7 @@ export const Container = styled.div<{ visibled: boolean }>`
   top: 60%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1;
+  z-index: 10;
 `;
 
 export const List = styled.div`
