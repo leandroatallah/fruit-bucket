@@ -98,6 +98,17 @@ const useAppStore = create<AppState>()((set, get) => ({
 
   moveUnallocatedFruit: (fruitId, bucketId) => {
     try {
+      const bucket = get().buckets.find((bucket) => bucket.id === bucketId);
+
+      if (!bucket) {
+        throw new Error();
+      }
+
+      if (bucket.fruits.length === bucket.capacity) {
+        toast.warning("O balde está cheio.");
+        return;
+      }
+
       set((state) => ({
         fruits: state.fruits.filter((fruit) => fruit.id !== fruitId),
         buckets: state.buckets.map((bucket) => {
@@ -121,6 +132,20 @@ const useAppStore = create<AppState>()((set, get) => ({
   moveFruitBetweenBuckets: (fruitId, fromBucketId, toBucketId) => {
     try {
       if (fromBucketId === toBucketId) {
+        return;
+      }
+
+      const fromBucket = get().buckets.find(
+        (bucket) => bucket.id === fromBucketId
+      );
+      const toBucket = get().buckets.find((bucket) => bucket.id === toBucketId);
+
+      if (!fromBucket || !toBucket) {
+        throw new Error();
+      }
+
+      if (toBucket.fruits.length === toBucket.capacity) {
+        toast.warning("O balde está cheio.");
         return;
       }
 
