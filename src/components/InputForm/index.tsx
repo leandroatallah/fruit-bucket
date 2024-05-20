@@ -1,36 +1,31 @@
-import styled from "styled-components";
+import * as S from "./InputForm.styles";
 
 interface InputFormProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
+  prefixText?: string;
 }
 
-const InputForm = ({ id, label, type, ...rest }: InputFormProps) => {
+const InputForm = ({
+  id,
+  label,
+  type,
+  prefixText,
+  ...rest
+}: InputFormProps) => {
   return (
-    <Container>
-      <Label htmlFor={id}>{label}</Label>
-      <Input type={type} id={id} {...rest} />
-    </Container>
+    <S.Container>
+      <S.Label htmlFor={id}>{label}</S.Label>
+      <div style={{ position: "relative" }}>
+        {prefixText && <S.PrefixText>{prefixText}</S.PrefixText>}
+        <S.Input
+          type={type}
+          id={id}
+          prefixOffset={prefixText ? prefixText.length * 8 + 16 : 0}
+          {...rest}
+        />
+      </div>
+    </S.Container>
   );
 };
-
-const Container = styled.div`
-  width: 100%;
-`;
-
-const Label = styled.label`
-  display: block;
-  font-size: 16px;
-  margin-bottom: 4px;
-`;
-
-const Input = styled.input`
-  border: 0;
-  border-radius: 4px;
-  font-size: 16px;
-  padding: 8px;
-  width: 100%;
-  background-color: #fff;
-  height: 40px;
-`;
 
 export default InputForm;

@@ -1,5 +1,4 @@
 import { Slide, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
@@ -18,6 +17,7 @@ function App() {
         <FruitList />
         <BucketList />
       </Grid>
+
       <ToastContainer
         autoClose={3000}
         limit={4}

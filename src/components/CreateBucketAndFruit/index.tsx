@@ -51,6 +51,7 @@ const CreateBucketAndFruit = () => {
             min="0"
             step="0.01"
             required
+            prefixText="R$"
           />
         </Flex>
         <Button type="submit">Salvar</Button>
