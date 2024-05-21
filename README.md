@@ -45,6 +45,26 @@ npm run dev
 npm run build
 ```
 
+### Testes Unitários
+
+```bash
+npm run test
+```
+
+### Testes End-to-End
+
+Execute o projeto:
+
+```bash
+npm run dev
+```
+
+e em outro terminal execute:
+
+```bash
+npm run cypress:open
+```
+
 ## Tecnologias Utilizadas
 
 - [Node.js 18+](https://nodejs.org/en)

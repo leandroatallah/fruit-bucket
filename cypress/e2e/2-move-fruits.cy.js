@@ -7,8 +7,11 @@ describe("Move fruits between buckets", () => {
   });
 
   it("create two new buckets", () => {
-    cy.createNewBucket("10");
-    cy.createNewBucket("10");
+    cy.get("input#capacity").type("5").should("have.value", "5");
+    cy.get('button[type="submit"]').first().click();
+
+    cy.get("input#capacity").type("5").should("have.value", "5");
+    cy.get('button[type="submit"]').first().click();
   });
 
   it("create a new fruit", () => {
