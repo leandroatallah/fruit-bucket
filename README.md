@@ -50,8 +50,10 @@ npm run build
 - [Node.js 18+](https://nodejs.org/en)
 - [Typescript](https://www.typescriptlang.org/)
 - [React.js](https://reactjs.org/)
-- [Tailwind.CSS](https://tailwindcss.com/)
-- [Day.js](https://day.js.org/)
+- [Styled Components](https://styled-components.com/)
+- [Zustand](https://zustand.surge.sh/)
+- [Vitest](https://vitest.dev/)
+- [Cypress](https://www.cypress.io/)
 
 ## Regras de negócio
 
@@ -79,4 +81,11 @@ A UI da sua aplicação deve suportar os seguintes casos de uso:
 
 ### Testes
 
-- O projeto utiliza a biblioteca _Vitest_ para a execução de testes unitários e de integração. Os testes de componentes devem ser escritos na pasta do componente, com o sufixo `.test.tsx`.
+- O projeto utiliza as bibliotecas _Vitest_ e _React Testing Library_ para a execução de testes unitários. Os testes de componentes devem ser escritos na pasta do componente, com o sufixo `.test.tsx`.
+- O projeto utiliza a biblioteca _Cypress_ para a execução de testes end-to-end. Os testes end-to-end devem ser escritos na pasta `cypress/e2e`.
+- Para melhor organização, algumas comandos customizados foram adicionados ao arquivo `cypress/support/commands.ts`, para evitar repetição de código.
+
+### Gerenciamento de Estado
+
+- O projeto utiliza a biblioteca _Zustand_ para o gerenciamento de estado global da aplicação. O estado global da aplicação deve ser criado na pasta `src/store`.
+- Foi utilizado o próprio _Zustand_ para persistir o estado da aplicação no _LocalStorage_.
