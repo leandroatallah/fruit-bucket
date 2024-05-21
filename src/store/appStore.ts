@@ -70,6 +70,7 @@ const useAppStore = create<AppState>()(
           set((state) => ({
             buckets: state.buckets.filter((bucket) => bucket.id !== bucketId),
           }));
+          toast.success("Balde removido com sucesso.");
         } catch (error) {
           if (typeof error === "string") {
             toast.error(error);
@@ -93,6 +94,8 @@ const useAppStore = create<AppState>()(
           set((state) => ({
             fruits: [...state.fruits, { id: uuid, name, price }],
           }));
+
+          toast.success("Fruta criada com sucesso.");
         } catch (error) {
           toast.error("Ops! Ocorreu um erro ao criar a fruta.");
         }
@@ -127,6 +130,7 @@ const useAppStore = create<AppState>()(
               return bucket;
             }),
           }));
+          toast.success("Fruta adicionada ao balde com sucesso.");
         } catch (error) {
           toast.error("Ops! Ocorreu um erro ao mover a fruta.");
         }
@@ -188,6 +192,8 @@ const useAppStore = create<AppState>()(
 
             return { ...state, buckets: updatedBuckets };
           });
+
+          toast.success("Fruta adicionada ao balde com sucesso.");
         } catch (error) {
           toast.error("Ops! Ocorreu um erro ao mover a fruta.");
         }
@@ -206,6 +212,7 @@ const useAppStore = create<AppState>()(
               return bucket;
             }),
           }));
+          toast.success("Fruta removida do balde com sucesso.");
         } catch (error) {
           toast.error("Ops! Ocorreu um erro ao remover a fruta.");
         }
